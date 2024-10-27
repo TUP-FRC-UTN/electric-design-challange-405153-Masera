@@ -2,3 +2,37 @@
 https://getbootstrap.com/docs/5.3/forms/form-control/#example
 https://getbootstrap.com/docs/5.3/forms/select/#default
 https://getbootstrap.com/docs/5.3/forms/select/#default -->
+<div class="container">
+
+    <form [formGroup]="formBudget">
+        
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+    
+        <div class="mb-3">
+            <label for="date" class="form-label">Fecha</label>
+            <input type="date" id="date" class="form-control" formControlName="date">
+        </div>
+
+        <div formArrayName="modules">
+
+            @for(module of modules.controls; track $index){
+                <div [formGroupName]="$index">
+                   
+                    <div class="mb-3">
+                        <label for="moduleTypes" class="form-label">Módulo</label>
+                        <select id="moduleTypes" class="form-select" formControlName="moduleTypes">
+                            @for (moduleType of moduleTypes; track $index) {
+                                <option [value]="moduleType.id">{{ moduleType.name }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </form>
+
+</div>

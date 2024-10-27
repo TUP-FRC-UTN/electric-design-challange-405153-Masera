@@ -2,6 +2,7 @@ export interface Budget {
   id?: string;
   client: string;
   date: Date;
+  modules: Module[];
   /* TODO
      Add collection to hold data about:
         - zone
@@ -21,4 +22,10 @@ export interface ModuleType {
   name: string;
   slots: number;
   price: number;
+}
+
+export interface Module {
+  id: string;
+  moduleType: ModuleType;
+  zone: Zone;
 }
